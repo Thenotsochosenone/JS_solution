@@ -4,7 +4,7 @@
   "description": "Solution to an interview problem\r Approach 1 Create a hashmap and",
   "main": "Solution0.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Shrineel",

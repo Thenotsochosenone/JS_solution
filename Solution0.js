@@ -37,29 +37,4 @@ writeStream.end();
 
 syncReadFile('./nameslist.txt');
 
-//Unit Testing
-const firstTest = require("./Solution0.js");
-
-
-test("Array input has a specific name", () => {
-
-    expect(firstTest).toContain('John Smith');
-    expect( new Set(firstTest).toContain('John Smith'));
-
-});
-//Testing Zone
-
-test("Array is not empty", () => {
-
-    expect(arr).toBeNull();
-  expect(arr).toBeDefined();
-  expect(arr).not.toBeUndefined();
-  expect(arr).not.toBeTruthy();
-  expect(arr).toBeFalsy();
-    
-
-}
-
-)
-
-
+module.exports = syncReadFile;
