@@ -1,0 +1,12 @@
+{
+  "name": "js_solution",
+  "version": "1.0.0",
+  "description": "Solution to an interview problem\r Approach 1 Create a hashmap and",
+  "main": "Solution0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Shrineel",
+  "license": "ISC"
+}
