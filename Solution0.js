@@ -38,7 +38,8 @@ writeStream.end();
 syncReadFile('./nameslist.txt');
 
 //Unit Testing
-const firstTest = require("./JSsolution.js");
+const firstTest = require("./Solution0.js");
+
 
 test("Array input has a specific name", () => {
 
