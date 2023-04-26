@@ -1,0 +1,46 @@
+Problem:
+The Goal: Name Sorter
+Build a name sorter. Given a set of names, order that set first by last name, then by any given names the person may have. A name must have at least 1 given name
+and may have up to 3 given names.
+
+Your submission must meet the following criteria.
+The solution should be available for review on github.
+The names should be sorted correctly.
+It should print the sorted list of names to screen.
+It should write/overwrite the sorted list of names to a file called sorted-names-list.txt.
+Unit tests should exist.
+Minimal, practical documentation should exist.
+
+Approach Steps:
+
+Tools Used
+VSC,Github tools,Powershell
+
+Language
+Javascript preference for Few reasons
+-Ease of fs functionality 
+-Ease of Sorting and Comparing Arrays
+-JEST Unit Testing and ease of project set up without framework
+-JS Env Set up done with simply creating the package.json file by init command.
+-npm libraries to be used are mostly related to JEST and Git. 
+
+Coding Approach:
+-fs.Syncreadfile and fs.writestream need to be set up so that data can be easily read and written. 
+-Testing errors on writestream and are being handled properly.
+-Downside of Syncreadfile is that its not ideal for unit testing. Mock testing needs to be performed.
+
+-Once the Text file is loaded into the array, a specific filter needs to be applied as it will result in shedding invalid data from the list.
+
+-Once the Valid Names are filtered through, they will be split up and compared with compare functions.
+-Compare function determines the initial order after splitting the names up from given names until the last given name is found and will be used to sort the compared string name values.
+
+-The sorted values will be printed to console and to the output file.
+-The Solution0.test.js file is used to unit testing. Test cases for basics are mocked here by creating a dummy array input.
+-Changes need to be made to package.json file to include JEST test cases or else test cases will not run with npm test command.
+
+Setting up JS project and using it is fairly easy, once downloaded.
+-node Solution0.js will be command used in terminal to run the code.
+-Input file can be replaced (unsorted-names-list.text)in package and output file will be generated once the code runs succesfully.(sorted-names-list.txt)
+
+
+
