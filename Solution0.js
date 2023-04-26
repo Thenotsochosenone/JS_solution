@@ -61,7 +61,6 @@ writeStream.end();
   return arr;
 }
 
-
 syncReadFile('./nameslist.txt');
 
 module.exports = syncReadFile;
