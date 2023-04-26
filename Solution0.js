@@ -6,7 +6,7 @@
 
 const { error } = require('console');
 const fs = require('fs');
-const writeStream = fs.createWriteStream('sorted-names-list.txt');
+const writeStream = fs.createWriteStream('sorted-names-list');
 const pathName = writeStream.path;
 const {readFileSync} = require('fs');
 
