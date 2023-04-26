@@ -6,11 +6,10 @@ const myMock = jest.fn();
 console.log(myMock());
 const arr = ['Morten Gamst Penderson','Antonio Di Natale','Rene Alder','Kakhaber Kaladze']
 const sortedarr = ['Rene Adler','Kakhaber Kaladze','Antonio Di Natale','Morten Gamst Penderson']
+num = 0;
 describe("syncReadFile", () => {
     test('1 should result in "List Present"', () => {
         expect(arr[1]).toMatch(/[^A-Za-z]/g);
-        
-        
       });
 });
 
