@@ -38,17 +38,16 @@ describe("processSyncFile", () => {
     });
 });
 
-beforeEach(() => { jest.resetModules(); jest.resetAllMocks(); })
-
+describe("writeSyncFile" ,() =>{
 test('No Output Files Found Test', () => {
-    fs.writeFileSync(file_found);
+    fs.writeFileSync(file_not_found);
        expect(mockFileNotPresent).toContain([['There is an error writing the file']]);
 })
 
 test('Output File Found Test', () => {
-    fs.writeFileSync(file_not_found);
+    fs.writeFileSync(file_found);
     expect(mockFilePresent).toContain([['Succesfully generated file from array']]);
 })
 
-
+})
 
