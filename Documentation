@@ -25,11 +25,10 @@ Javascript preference for Few reasons
 -npm libraries to be used are mostly related to JEST and Git. 
 
 Coding Approach:
--fs.Syncreadfile and fs.writestream need to be set up so that data can be easily read and written. 
--Testing errors on writestream and are being handled properly.
--Downside of Syncreadfile is that its not ideal for unit testing. Mock testing needs to be performed.
+-fs.Syncreadfile and fs.writestream need to be set up so that data can be easily read and written thus dividing them up into seperate functions.
+-Processing is done in process function for all the sorting and comparisons.
 
--Once the Text file is loaded into the array, a specific filter needs to be applied as it will result in shedding invalid data from the list.
+-Once the Text file is loaded into the array, a specific filter needs to be applied as it will result in shedding invalid data from the list. No fatal error thrown.
 
 -Once the Valid Names are filtered through, they will be split up and compared with compare functions.
 -Compare function determines the initial order after splitting the names up from given names until the last given name is found and will be used to sort the compared string name values.
@@ -37,10 +36,12 @@ Coding Approach:
 -The sorted values will be printed to console and to the output file.
 -The Solution0.test.js file is used to unit testing. Test cases for basics are mocked here by creating a dummy array input.
 -Changes need to be made to package.json file to include JEST test cases or else test cases will not run with npm test command.
+-4 Test cases with one negative case. Verifying basic outlay. 
+-Downside of using Syncreadfile is that its not ideal for current scenario of unit testing. Mock testing needs to be performed.
 
 Setting up JS project and using it is fairly easy, once downloaded.
 -node Solution0.js will be command used in terminal to run the code.
--Input file can be replaced (unsorted-names-list.text)in package and output file will be generated once the code runs succesfully.(sorted-names-list.txt)
+-Input file can be replaced (unsorted-names-list.text)in package and output file will be generated/updated once the code runs succesfully.(sorted-names-list.txt)
 
 
 
