@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 //Reading the input file and placing the data in an array
-const { error } = require('console');
 const fs = require('fs');
 const { readFileSync } = require('fs');
 
@@ -16,16 +15,15 @@ function syncReadFile(filename) {
   function isValid(string) {
     const l = string.split(' ').length
     return l >= 1 && l <= 4;
-  }
-  const Namearray = contents.split(/\r?\n/).filter(isValid);
+  };
+  const nameArray = contents.split(/\r?\n/).filter(isValid);
   //Array created!
 
-  console.log("Original Unsorted List" + JSON.stringify(Namearray))
-  return Namearray;
+  return nameArray;
 }
 
 //Function for sorting Names by splitting the string by Comparison for correct output
-function processSyncFile(Namearray) {
+function processSyncFile(nameArray) {
 
   const compareStrings = (a, b) => {
     if (a < b) return -1;
@@ -43,20 +41,18 @@ function processSyncFile(Namearray) {
     return lastA === lastB ?
       compareStrings(splitA[0], splitB[0]) :
       compareStrings(lastA, lastB);
-
-
   }
-  console.log(Namearray.sort(compare));
-  return Namearray.sort(compare);
+  console.log(nameArray.sort(compare));
+  return nameArray.sort(compare);
 }
 
 //Writestream function
-function writeSyncFile(Namearray) {
+function writeSyncFile(nameArray) {
   const writeStream = fs.createWriteStream('sorted-names-list');
   const pathName = writeStream.path;
 
   //printing each line of array seperately
-  Namearray.forEach(value => writeStream.write(`${value}\n`));
+  nameArray.forEach(value => writeStream.write(`${value}\n`));
   // finish the writestream
   writeStream.on('finished!', () => {
     console.log(`Succesfully generated file from array ${pathName}`);
@@ -68,8 +64,10 @@ function writeSyncFile(Namearray) {
   // close the stream
   writeStream.end();
 
-  return Namearray;
+  return nameArray;
 }
 
 module.exports = writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
+module.exports=  processSyncFile;
+module.exports = isValid;
 
