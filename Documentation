@@ -36,8 +36,9 @@ Coding Approach:
 -The sorted values will be printed to console and to the output file.
 -The Solution0.test.js file is used to unit testing. Test cases for basics are mocked here by creating a dummy array input.
 -Changes need to be made to package.json file to include JEST test cases or else test cases will not run with npm test command.
--4 Test cases with one negative case. Verifying basic outlay. 
--Downside of using Syncreadfile is that its not ideal for current scenario of unit testing. Mock testing needs to be performed.
+-6 Unit Test cases with one negative case. Verifying basic outlay.  
+-Downside of using Syncreadfile is that its not ideal for current scenario of unit testing. Mock testing needs to be performed for certain scenarios.
+-Read/Write/Processing Unit Test cases present.
 
 Setting up JS project and using it is fairly easy, once downloaded.
 -node Solution0.js will be command used in terminal to run the code.
