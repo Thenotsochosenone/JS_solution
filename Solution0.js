@@ -3,8 +3,6 @@
 //Reading the input file and placing the data in an array
 const { error } = require('console');
 const fs = require('fs');
-const writeStream = fs.createWriteStream('sorted-names-list');
-const pathName = writeStream.path;
 const { readFileSync } = require('fs');
 
 //Function to Read File and convert it into an array
@@ -19,15 +17,15 @@ function syncReadFile(filename) {
     const l = string.split(' ').length
     return l >= 1 && l <= 4;
   }
-  const arr = contents.split(/\r?\n/).filter(isValid);
+  const Namearray = contents.split(/\r?\n/).filter(isValid);
   //Array created!
 
-  console.log("Original Unsorted List" + JSON.stringify(arr))
-  return arr;
+  console.log("Original Unsorted List" + JSON.stringify(Namearray))
+  return Namearray;
 }
 
 //Function for sorting Names by splitting the string by Comparison for correct output
-function processSyncFile(arr) {
+function processSyncFile(Namearray) {
 
   const compareStrings = (a, b) => {
     if (a < b) return -1;
@@ -48,15 +46,17 @@ function processSyncFile(arr) {
 
 
   }
-  console.log(arr.sort(compare));
-  return arr.sort(compare);
+  console.log(Namearray.sort(compare));
+  return Namearray.sort(compare);
 }
 
 //Writestream function
-function writeSyncFile(arr) {
+function writeSyncFile(Namearray) {
+  const writeStream = fs.createWriteStream('sorted-names-list');
+  const pathName = writeStream.path;
 
   //printing each line of array seperately
-  arr.forEach(value => writeStream.write(`${value}\n`));
+  Namearray.forEach(value => writeStream.write(`${value}\n`));
   // finish the writestream
   writeStream.on('finished!', () => {
     console.log(`Succesfully generated file from array ${pathName}`);
@@ -68,11 +68,8 @@ function writeSyncFile(arr) {
   // close the stream
   writeStream.end();
 
-  return arr;
+  return Namearray;
 }
 
-writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
+module.exports = writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
 
-module.exports = syncReadFile;
-module.exports = processSyncFile;
-module.exports = writeSyncFile;
