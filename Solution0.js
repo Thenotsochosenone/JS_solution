@@ -10,15 +10,13 @@ function syncReadFile(filename) {
   //Reading the file 
   const contents = readFileSync(filename, 'utf-8');
   //Creating Array and checking validity of input and avoids names out of range
-
-
+  
   function isValid(string) {
     const l = string.split(' ').length
     return l >= 1 && l <= 4;
   };
   const nameArray = contents.split(/\r?\n/).filter(isValid);
   //Array created!
-
   return nameArray;
 }
 
@@ -67,7 +65,7 @@ function writeSyncFile(nameArray) {
   return nameArray;
 }
 
-module.exports = writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
-module.exports=  processSyncFile;
-module.exports = isValid;
+writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
+module.exports =  { processSyncFile };
+module.exports =  { syncReadFile };
 

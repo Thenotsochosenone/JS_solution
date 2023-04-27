@@ -1,13 +1,15 @@
 
 
 //Unit Testing
-const isValid = require('./isValid');
-const processSyncFile = require('./processSyncFile');
+//const isValid = require('./Solution0.js');
+//const solution = require('./Solution0');
+var { processSyncFile } = require('./Solution0.js')
+var { syncReadFile } = require('./Solution0.js')
 const myMock = jest.fn();
 const fs = require('fs');
 console.log(myMock());
-const nameArray = ['Morten Gamst Penderson Henrik VII', 'Antonio Di Natale', 'Rene Alder', 'Kakhaber Kaladze']
-
+const nameArray = ['Morten Gamst Penderson Henrik VII', 'Antonio Di Natale', 'Rene Adler', 'Kakhaber Kaladze']
+var processedArray = processSyncFile(nameArray)
 
 describe("syncReadFile", () => {
     test('Should result in "List Present"', () => {
@@ -34,7 +36,7 @@ describe("writeSyncFile", () => {
 
 describe("processSyncFile Test", () =>{
     test('Name order is correct', () =>{
-        expect(processSyncFile(nameArray[0])).toMatch('Rene Adler')
+        expect(processedArray[0]).toBe('Rene Adler')
 
     })
 
@@ -42,9 +44,10 @@ describe("processSyncFile Test", () =>{
 
 describe("Name is not Valid within parameters", () =>{
     test('Name is too long', () =>{
-        expect(isValid(nameArray[0])).not.toMatch(true)
+        expect(syncReadFile.isValid(nameArray[0])).not.toMatch(true)
 
     })
 
 })
+
 
