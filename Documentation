@@ -18,7 +18,7 @@ VSC,Github tools,Powershell
 
 Language
 Javascript preference for Few reasons
--Ease of fs functionality 
+-Ease of fs module functionality 
 -Ease of Sorting and Comparing Arrays
 -JEST Unit Testing and ease of project set up without framework
 -JS Env Set up done with simply creating the package.json file by init command.

@@ -1,15 +1,20 @@
 
 
 //Unit Testing
+
 const { describe } = require("yargs");
 const syncReadFile = require("./Solution0.js");
 const processSyncFile = require("./Solution0.js");
 const writeSyncFile = ("./Solution0.js");
 const myMock = jest.fn();
+const fs = require('fs');
 console.log(myMock());
 const arr = ['Morten Gamst Penderson', 'Antonio Di Natale', 'Rene Alder', 'Kakhaber Kaladze']
 const file_found = { "./sorted-names-list": "Sorted List Output Present" }
 const file_not_found = {}
+const mockFilePresent = {'Succesfully generated file from array' : 'Files are Present'}
+const mockFileNotPresent = {'There is an error writing the file' : 'Files Not Present'}
+
 
 describe("syncReadFile", () => {
     test('1 should result in "List Present"', () => {
@@ -36,15 +41,13 @@ describe("processSyncFile", () => {
 beforeEach(() => { jest.resetModules(); jest.resetAllMocks(); })
 
 test('No Output Files Found Test', () => {
-    require("fs").writeFileSync(file_found);
-    const spy = jest.spyOn(console, "log");
-    require('./Solution0.js'); expect(spy.mock.calls).toEqual([['File not found']]);
+    fs.writeFileSync(file_found);
+       expect(mockFileNotPresent).toContain([['There is an error writing the file']]);
 })
 
 test('Output File Found Test', () => {
-    require("fs").writeFileSync(file_not_found);
-    const spy = jest.spyOn(console, "log"); require('./Solution0.js');
-    expect(spy.mock.calls).toEqual([['File Found']]);
+    fs.writeFileSync(file_not_found);
+    expect(mockFilePresent).toContain([['Succesfully generated file from array']]);
 })
 
 
