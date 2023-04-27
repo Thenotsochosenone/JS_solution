@@ -1,3 +1,4 @@
 # JS_solution
 Solution to an interview problem
-Approach 1 Create a hashmap and 
+Namesort within certain parameters by last given name.
+Please review Documentation for further information. 
