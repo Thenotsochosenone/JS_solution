@@ -18,7 +18,7 @@ function syncReadFile(filename) {
   const nameArray = contents.split(/\r?\n/).filter(isValid);
   //Array created!
   return nameArray;
-}
+};
 
 //Function for sorting Names by splitting the string by Comparison for correct output
 function processSyncFile(nameArray) {
@@ -42,7 +42,7 @@ function processSyncFile(nameArray) {
   }
   console.log(nameArray.sort(compare));
   return nameArray.sort(compare);
-}
+};
 
 //Writestream function
 function writeSyncFile(nameArray) {
@@ -63,9 +63,8 @@ function writeSyncFile(nameArray) {
   writeStream.end();
 
   return nameArray;
-}
+};
 
 writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
-module.exports =  { processSyncFile };
-module.exports =  { syncReadFile };
+module.exports =  { processSyncFile , syncReadFile };
 
