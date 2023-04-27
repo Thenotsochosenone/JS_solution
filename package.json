@@ -1,7 +1,7 @@
 {
   "name": "js_solution",
   "version": "1.0.0",
-  "description": " ",
+  "description": "Namesort Problem Solution using Javascript",
   "main": "Solution0.js",
   "scripts": {
     "test": "jest"
