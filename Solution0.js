@@ -3,71 +3,83 @@
 const fs = require('fs');
 const { readFileSync } = require('fs');
 
-//Function to Read File and convert it into an array.
+/**
+ * Reads the input file and returns an array of valid names.
+ * Valid names must have between 2 and 4 parts (1–3 given names + last name).
+ */
 function syncReadFile(filename) {
-
-  //Reading the file. 
   const contents = readFileSync(filename, 'utf-8');
 
-  //Creating Array and checking validity of input and avoids names out of range.
-  function isValid(string) {
-    const l = string.split(' ').length
-    return l >= 1 && l <= 4;
+  const isValid = (line) => {
+    const parts = line.trim().split(/\s+/).filter(Boolean);
+    return parts.length >= 2 && parts.length <= 4;
   };
-  const nameArray = contents.split(/\r?\n/).filter(isValid);
 
-  //Array created!
-  return nameArray;
-};
+  return contents
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(isValid);
+}
 
-//Function for sorting Names by splitting the string by Comparison for correct output.
+/**
+ * Sorts names by last name, then by given names.
+ */
 function processSyncFile(nameArray) {
-
-  const compareStrings = (a, b) => {
-    if (a < b) return -1;
-    if (a > b) return 1;
-
-    return 0;
-  }
-
   const compare = (a, b) => {
-    const splitA = a.split(" ");
-    const splitB = b.split(" ");
-    const lastA = splitA[splitA.length - 1];
-    const lastB = splitB[splitB.length - 1];
+    const partsA = a.split(/\s+/);
+    const partsB = b.split(/\s+/);
 
-    return lastA === lastB ?
-      compareStrings(splitA[0], splitB[0]) :
-      compareStrings(lastA, lastB);
-  }
-  console.log(nameArray.sort(compare));
+    const lastA = partsA[partsA.length - 1];
+    const lastB = partsB[partsB.length - 1];
+
+    // Primary sort: last name
+    const lastNameComparison = lastA.localeCompare(lastB);
+    if (lastNameComparison !== 0) {
+      return lastNameComparison;
+    }
+
+    // Secondary sort: all given names
+    const givenA = partsA.slice(0, -1).join(' ');
+    const givenB = partsB.slice(0, -1).join(' ');
+    return givenA.localeCompare(givenB);
+  };
+
+  // Sort in-place and return the sorted array
   return nameArray.sort(compare);
-};
+}
 
-//Writestream function.
+/**
+ * Writes the sorted names to sorted-names-list.txt
+ */
 function writeSyncFile(nameArray) {
-  const writeStream = fs.createWriteStream('sorted-names-list');
-  const pathName = writeStream.path;
+  const outputPath = 'sorted-names-list.txt';
+  const writeStream = fs.createWriteStream(outputPath);
 
-  //printing each line of array seperately.
-  nameArray.forEach(value => writeStream.write(`${value}\n`));
-
-  // finish the writestream.
-  writeStream.on('finished!', () => {
-    console.log(`Succesfully generated file from array ${pathName}`);
+  nameArray.forEach(name => {
+    writeStream.write(`${name}\n`);
   });
 
-  // Error whilst writing stream.
-  writeStream.on('error while writing the file', (err) => {
-    console.error(`There is an error writing the file ${pathName} => ${err}`)
+  writeStream.on('finish', () => {
+    console.log(`Successfully wrote sorted names to ${outputPath}`);
   });
-  
-  // close the stream.
+
+  writeStream.on('error', (err) => {
+    console.error(`Error writing file ${outputPath}:`, err);
+  });
+
   writeStream.end();
-
   return nameArray;
-};
+}
 
-writeSyncFile(processSyncFile(syncReadFile('./unsorted-names-list.txt')));
-module.exports = { processSyncFile, syncReadFile };
+// Main execution
+const inputFile = './unsorted-names-list.txt';
+const names = syncReadFile(inputFile);
+const sortedNames = processSyncFile(names);
 
+console.log('Sorted names:');
+sortedNames.forEach(name => console.log(name));
+
+writeSyncFile(sortedNames);
+
+// Export for testing
+module.exports = { processSyncFile, syncReadFile, writeSyncFile };
